@@ -1,14 +1,14 @@
 package day1
 
 import (
-	"bufio"
+	"adventofcode/helper"
+	_ "adventofcode/helper"
 	"github.com/stretchr/testify/assert"
-	"os"
 	"testing"
 )
 
 func TestCalculateSum(t *testing.T) {
-	input, err := readLines("input")
+	input, err := helper.ReadLines("input")
 	assert.NoError(t, err)
 
 	assert.NoError(t, err)
@@ -60,19 +60,4 @@ func TestGetCalibrationValueNewMethod(t *testing.T) {
 
 func TestGetSumValueNewMethod(t *testing.T) {
 	assert.Equal(t, 281, getCalibrationSum([]string{"two1nine", "eightwothree", "abcone2threexyz", "xtwone3four", "4nineeightseven2", "zoneight234", "7pqrstsixteen"}))
-}
-
-func readLines(path string) ([]string, error) {
-	file, err := os.Open(path)
-	if err != nil {
-		return nil, err
-	}
-	defer file.Close()
-
-	var lines []string
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
-	}
-	return lines, scanner.Err()
 }
